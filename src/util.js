@@ -1,0 +1,11 @@
+export const has = (a) => a !== undefined && a !== null && a !== "" && !(Array.isArray(a) && a.length === 0);
+export const fmt = (s) => { const t = Math.max(0, s); return [Math.floor(t / 3600), Math.floor((t % 3600) / 60), t % 60].map((n) => String(n).padStart(2, "0")).join(":"); };
+export const negTxt = (q) => (q.type === "MCQ" ? (q.marks === 1 ? "1/3" : "2/3") : "0");
+export const secOf = (q) => (q.subject === "General Aptitude" ? "GA" : "CORE");
+export const SECN = { GA: "General Aptitude", CORE: "Core subject (ECE)" };
+export const LEG = [["Not visited", 0], ["Not answered", 1], ["Answered", 2], ["Marked for review", 3], ["Answered & marked", 4]];
+export const mins = (sec) => Math.round(sec / 60);
+export const yt = (t) => "https://www.youtube.com/results?search_query=" + encodeURIComponent(t + " GATE ECE lecture");
+export const gg = (t) => "https://www.google.com/search?q=" + encodeURIComponent(t + " GATE ECE notes NPTEL");
+export const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+export const fd = (i) => { const [y, m, d] = i.split("-"); return +d + " " + MON[m - 1] + " " + y; };
