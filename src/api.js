@@ -2,10 +2,13 @@
 let onUnauthorized = () => {};
 export const setUnauthorizedHandler = (f) => { onUnauthorized = f; };
 
+const apiBase = (import.meta.env.VITE_API_BASE_URL || "").replace(/\/$/, "");
+
 export async function api(url, body, method) {
   const opt = body === undefined ? {}
     : { method: method || "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) };
-  const r = await fetch(url, opt);
+  opt.credentials = "include";
+  const r = await fetch(`${apiBase}${url}`, opt);
   let j = {};
   try { j = await r.json(); } catch (e) { /* empty body */ }
   if (r.status === 401 && url !== "/api/auth/login") {
